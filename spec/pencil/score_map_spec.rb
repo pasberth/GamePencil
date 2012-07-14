@@ -267,4 +267,41 @@ describe GamePencil::Pencil::ScoreMap do
       end
     end
   end
+
+  describe "#shortest" do
+
+    let :map do
+      [ [1, 2, 3],
+        [1, 1, 2],
+        [3, 3, 1] ]
+    end
+
+    let :score_map do
+      described_class.new { |x, y| map[x] && map[x][y] or nil }.begin(0, 0)
+    end
+
+    context "when movement is the shape of a cross." do
+
+      subject { score_map.movement([1, 0], [0, 1], [-1, 0], [0, -1]) }
+
+      it do
+        subject.shortest(2, 2).should == [ [[0, 0], 1],
+                                           [[1, 0], 2],
+                                           [[1, 1], 3],
+                                           [[1, 2], 5],
+                                           [[2, 2], 6] ]
+      end
+    end
+
+    context "when it can move one square in any direction." do
+
+      subject { score_map.movement([1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, -1]) }
+
+      it do
+        subject.shortest(2, 2).should == [ [[0, 0], 1],
+                                           [[1, 1], 2],
+                                           [[2, 2], 3] ]
+      end
+    end
+  end
 end

@@ -74,6 +74,10 @@ module GamePencil
           end
         end
       end
+
+      def shortest *point
+        each.find { |a| a.last[0] == point }
+      end
     end
   end
 end
