@@ -143,9 +143,9 @@ describe GamePencil::Pencil::ScoreMap do
         # 
         # Set the movement:
         #
-        #    xox   # (-1, -1) (0, -1) (+1, -1)
+        #    ooo   # (-1, -1) (0, -1) (+1, -1)
         #    o@o   # (-1,  0) (  @  ) (+1,  0)
-        #    xox   # (-1, +1) (0, +1) (+1, +1)
+        #    ooo   # (-1, +1) (0, +1) (+1, +1)
         score_map.begin(0, 0).movement([1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1])
       end
 
